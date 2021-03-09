@@ -1,9 +1,38 @@
 import '../scss/main.scss';
 
 // uncomment the lines below to enable PWA
-// import {registerSW} from './pwa.js';
-// registerSW();
+import {registerSW} from './pwa.js';
+registerSW();
 
 /* place your code below */
 
-console.log('HELLO 🚀')
+
+const button = document.querySelector('.button--js');
+const button2 = document.querySelector('.button2--js');
+const number = document.querySelector('.number--js');
+const key = new Date().toLocaleString().slice(0,10);
+
+let glassCounter = 0;
+const localStorageValue = localStorage.getItem(key);
+
+if(localStorageValue){
+glassCounter = localStorageValue;
+} else {
+    localStorage.setItem(key,0);
+}
+number.innerHTML = glassCounter;
+
+button.addEventListener('click', () => {
+    glassCounter++;
+    number.innerHTML=glassCounter;
+    localStorage.setItem(key,glassCounter);
+    });
+
+button2.addEventListener('click', () => {
+    if(glassCounter > 0){
+    glassCounter--;
+    number.innerHTML=glassCounter;
+    localStorage.setItem(key,glassCounter);
+    }
+})
+ 
